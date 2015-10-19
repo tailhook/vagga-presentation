@@ -1,0 +1,54 @@
+﻿@import "hovercraft.css";
+
+.strike {
+    text-decoration: line-through;
+}
+
+.code {
+    text-align: left;
+}
+
+.fs18 {
+    font-size: 180%;
+}
+.fs14 {
+    font-size: 140%;
+}
+
+.step {
+    /* border: dashed #F0F0F0 8px; */
+    /* border-radius: 40px; */
+    width: inherit;
+    min-width: 800px;
+}
+
+blockquote {
+    text-align: left;
+    border-left: solid #DDD 12px;
+    padding-left: 16px;
+}
+
+.cite {
+    text-align: right;
+}
+.cite::before {
+    content: "—";
+    padding-right: 20px;
+}
+.cite_label {
+    display: none;
+}
+
+
+a {
+    color: blue;
+}
+
+ul {
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+    padding: 0px;
+}
