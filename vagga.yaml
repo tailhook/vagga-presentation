@@ -1,0 +1,78 @@
+containers:
+
+  build:
+    setup:
+    - !Ubuntu trusty
+    - !UbuntuUniverse ~
+    - !Install [python3-pip, python3-dev, libxml2-dev, python3-lxml]
+    - !PipConfig {dependencies: true}
+    - !Py3Install [hovercraft]
+    - !Install [webfs]
+
+  wkhtmltopdf:
+    setup:
+    - !Ubuntu trusty
+    - !UbuntuUniverse
+    - !Install [wget, ca-certificates]
+    - !Sh |
+        set -ex
+        cd /tmp
+        wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+        dpkg -i wkhtmltox-0.12.2.1_linux-trusty-amd64.deb || apt-get -fy install
+
+commands:
+
+  build: !Command
+    description: Transform presentation.rst -> .html
+    container: build
+    run:
+    - hovercraft
+    - --skip-help
+    - presentation.rst
+    - build
+    - --css
+    - /work/hovercraft.css
+
+  observe: !Command
+    description: Transform presentation.rst -> .html
+    container: build
+    run: |
+      hovercraft --skip-help presentation.rst --css /work/hovercraft.css
+
+  pdf: !Supervise
+    description: Render pdf version of presentation
+    epilog: Now your pdf in build/presentation.pdf
+    # wkhtmltopdf can't use hash #xx for local files (so we serve with webfs),
+    children:
+      render: !Command
+        container: wkhtmltopdf
+        # wkhtmltopdf can't switch pages of presentation by itself
+        # so find out all the steps and put each as a separate url
+        run: |
+          set -e
+          pages=$(grep -oP 'step="[0-9]+"(?:\s+id="[^"]+")?' build/index.html \
+            | while read step_expr id_expr; do
+            if [ -n "$id_expr" ]; then
+              # hash name can be either id
+              eval "$id_expr"
+              echo "http://localhost:8000/index.html#/$id"
+            else
+              # .. or 1-based step number (but it's 0-based in html)
+              eval "$step_expr"
+              echo "http://localhost:8000/index.html#/step-$((step + 1))"
+            fi
+          done)
+          wkhtmltopdf \
+            --javascript-delay 20000 \
+            --orientation Landscape \
+            $pages \
+            build/presentation.pdf
+      serve: !Command
+        container: build
+        run: webfsd -R /work/build -F
+
+  serve: !Command
+    description: Serve me http://localhost:8000
+    container: build
+    run: webfsd -R /work/build -F
+
