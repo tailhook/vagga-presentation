@@ -82,6 +82,12 @@ Build .deb Package
    Done. The new package has been saved to
    dist/14.04/program_1.2.3-1_amd64.deb
 
+
+----
+
+.. figure:: vagga-buildbot.jpg
+   :height: 500px
+
 ----
 
 .. image:: printer_tweet.png
@@ -109,7 +115,176 @@ Lint
 
 ----
 
+Many Environments
+=================
 
+.. code-block:: console
+   :class: fs14
 
+   $ vagga
+   vagga build-QtCreator3.4.0-Qt5.2.1-Ubuntu14.04.3
+   vagga build-QtCreator3.4.1-Qt5.2.1-Ubuntu14.04.3
+   vagga build-QtCreator3.4.2-Qt5.2.1-Ubuntu14.04.3
+   vagga build-QtCreator3.4.0-Qt5.2.1-Ubuntu14.10.1
+   vagga build-QtCreator3.4.1-Qt5.2.1-Ubuntu14.10.1
+   vagga build-QtCreator3.4.2-Qt5.2.1-Ubuntu14.10.1
 
+----
+
+NodeOS
+======
+
+----
+
+Tutorial
+========
+
+----
+
+Deployment
+==========
+
+----
+
+Docker
+======
+
+----
+
+:data-rotate-z: -90
+:data-x: r0
+:data-y: r800
+
+:strike:`Docker`
+================
+
+----
+
+:data-x: r1200
+:data-y: r0
+
+* :strike:`Docker`
+* chroot
+
+----
+
+* :strike:`Docker`
+* chroot
+* systemd-nspawn
+
+----
+
+* :strike:`Docker`
+* chroot
+* systemd-nspawn
+* runc
+
+----
+
+* :strike:`Docker`
+* chroot
+* systemd-nspawn
+* runc
+* rkt
+
+----
+
+* :strike:`Docker`
+* chroot
+* systemd-nspawn
+* runc
+* rkt
+* lxc
+
+----
+
+* :strike:`Docker`
+* chroot + unshare
+* systemd-nspawn
+* runc
+* rkt
+* lxc
+
+----
+
+Roadmap
+=======
+
+----
+
+Image Pull/Push
+===============
+
+* signed
+* needed for travis-ci
+
+----
+
+Lint
+====
+
+editorconfig_-like:
+
+.. code-block:: console
+   :class: fs18
+
+   $ vagga check-py
+   $ vagga check-js
+
+.. _editorconfig: http://editorconfig.org
+
+----
+
+Completion
+==========
+
+.. code-block:: console
+   :class: fs18
+
+   $ vagga _complete --bash make
+
+----
+
+Bootstrapping
+=============
+
+.. code-block:: console
+   :class: fs18
+
+   $ vagga _bootstrap py
+   Use python3? [Y/n]
+   Add manage.py command? [Y/n]
+   Add sphinx documentation? [Y/n]
+
+----
+
+Global Commands
+===============
+
+.. code-block:: console
+   :class: fs18
+
+   $ vagga _install python3.5
+   $ vagga _global python3.5 -q
+   >>>
+   $ ln -s /usr/bin/vagga ~/bin/python3.5
+   $ python3.5 -q
+   >>>
+
+*inspired by* pipsi_
+
+.. _pipsi: https://github.com/mitsuhiko/pipsi
+
+----
+
+Network
+=======
+
+* Distributed Systems
+* Slow Connection
+
+----
+
+Questions
+=========
 

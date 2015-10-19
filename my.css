@@ -16,8 +16,8 @@
 }
 
 .step {
-    border: dashed #F0F0F0 8px;
-    border-radius: 40px;
+    /* border: dashed #F0F0F0 8px; */
+    /* border-radius: 40px; */
     width: inherit;
     min-width: 800px;
 }
@@ -44,3 +44,11 @@ a {
     color: blue;
 }
 
+ul {
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+    padding: 0px;
+}
