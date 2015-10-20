@@ -3,6 +3,12 @@
 .. role:: strike
    :class: strike
 
+.. role:: sm
+   :class: small
+
+.. role:: big-brace
+   :class: big-brace
+
 .. title:: Vagga
 
 ----
@@ -198,12 +204,14 @@ Docker
 
 ----
 
-* :strike:`Docker`
-* chroot + unshare
-* systemd-nspawn
-* runc
-* rkt
-* lxc
++------------------------+----------------+---------+
+|   * :strike:`Docker`   |                |         |
+|   * chroot + unshare   |                |         |
+|   * systemd-nspawn     | :big-brace:`}` | Linux   |
+|   * runc               |                |         |
+|   * rkt                |                |         |
+|   * lxc                |                |         |
++------------------------+----------------+---------+
 
 ----
 
@@ -282,6 +290,18 @@ Network
 
 * Distributed Systems
 * Slow Connection
+
+----
+
+Contributing
+============
+
+http://github.com/tailhook/vagga
+
+* Rust
+* Strongly Typed (27 :sm:`LoC` unsafe)
+* code: 9K :sm:`LoC` + 1K :sm:`LoC` tests
+* docs: 3K :sm:`LoC` + 0.2K :sm:`LoC` examples
 
 ----
 

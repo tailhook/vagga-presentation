@@ -3,6 +3,9 @@
 .strike {
     text-decoration: line-through;
 }
+.small {
+    font-size: 50%;
+}
 
 .code {
     text-align: left;
@@ -51,4 +54,10 @@ ul {
 li {
     list-style-type: none;
     padding: 0px;
+}
+
+.big-brace {
+    font-size: 800%;
+    padding-left: 50px;
+    padding-right: 50px;
 }
