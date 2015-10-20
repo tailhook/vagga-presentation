@@ -1,0 +1,42 @@
+containers:
+  flask:
+    setup:
+    - !Ubuntu trusty
+    - !PipConfig { dependencies: true }
+    - !Py3Requirements "requirements.txt"
+
+  nginx:
+    setup:
+    - !Ubuntu trusty
+    - !Install [nginx]
+
+  nodejs:
+    setup:
+    - !Alpine v3.2
+    - !NpmInstall [webpack, babel-loader]
+
+commands:
+  run-flask: !Command
+    description: Run flask app
+    container: flask
+    run: "python3 app.py"
+
+  run: !Supervise
+    children:
+      flask: !Command
+        container: flask
+        run: "python3 app.py"
+      nginx: !Command
+        container: nginx
+        run: [nginx, -c, "/work/nginx.conf"]
+
+  test: !Command
+    description: Run tests
+    container: tests
+    run: [nosetests]
+
+  make: !Command
+    description: Build javascripts
+    container: nodejs
+    run: [webpack]
+
